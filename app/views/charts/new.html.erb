@@ -1,0 +1,10 @@
+<h1>メッセージ新規作成ページ</h1>
+<%= form_with(model: @chart) do |f| %>
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title %><br>
+    <%= f.label :description, "Description" %>
+    <%= f.text_field :description %><br>
+    <%= f.submit 'submit' %>
+  <% end %>
+  
+<%= link_to '一覧に戻る', charts_path %>

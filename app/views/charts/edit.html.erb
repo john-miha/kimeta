@@ -1,0 +1,20 @@
+<%#
+ファイル名は、コントローラ名/アクション名.html.erbにする
+この名前にすると、アクセス時のURLが/コントローラー名/アクション名　になる。
+@chart_headerでコントローラ側で指定したテンプレート変数を取得できる。
+
+form_forが自動的に生成してくれるパスは複数形のみ。
+urlを指定して、飛び先を教えてあげる。
+ #%>
+
+<h1>id: <%= @chart.id %> のメッセージ編集ページ</h1>
+
+<%= form_with(model: @chart) do |f| %>
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title %><br>
+    <%= f.label :description, "Description" %>
+    <%= f.text_field :description %><br>
+    <%= f.submit 'submit' %>
+<% end %>
+
+<%= link_to '一覧に戻る', charts_path %>

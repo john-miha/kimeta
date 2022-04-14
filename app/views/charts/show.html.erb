@@ -1,0 +1,7 @@
+<h1>id: <%= @chart.id %> のメッセージ詳細ページ</h1>
+
+<p><%= @chart.title %></p>
+
+<%= link_to '一覧に戻る', charts_path %>
+<%= link_to 'このメッセージを編集する', edit_chart_path(@chart) %>
+<%= link_to 'このメッセージを削除する', @charts, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>

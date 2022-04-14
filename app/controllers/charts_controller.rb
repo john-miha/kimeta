@@ -16,7 +16,7 @@ class ChartsController < ApplicationController
       def create
         @chart = Chart.new(charts_params)
     
-        if @chart_header.save
+        if @chart.save
           flash[:success] = '正常に投稿されました'
           redirect_to  @chart
         else

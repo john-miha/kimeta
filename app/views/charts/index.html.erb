@@ -1,0 +1,9 @@
+<h1>表一覧</h1>
+
+<ul>
+  <% @charts.each do |chart| %>
+    <li>表タイトル： <%= link_to chart.title, chart %> 表説明： <%= chart.description %></li>
+  <% end %>
+</ul>
+
+<%= link_to '新規作成', new_chart_path %>
