@@ -1,0 +1,2 @@
+class ViewpointsController < ApplicationController
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_14_223635) do
+ActiveRecord::Schema.define(version: 2022_04_15_100652) do
 
   create_table "chart_headers", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
@@ -26,4 +26,32 @@ ActiveRecord::Schema.define(version: 2022_04_14_223635) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "evaluations", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "score"
+    t.string "comment"
+    t.bigint "chart_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chart_id"], name: "index_evaluations_on_chart_id"
+  end
+
+  create_table "items", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.bigint "evaluation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["evaluation_id"], name: "index_items_on_evaluation_id"
+  end
+
+  create_table "viewpoints", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.bigint "evaluation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["evaluation_id"], name: "index_viewpoints_on_evaluation_id"
+  end
+
+  add_foreign_key "evaluations", "charts"
+  add_foreign_key "items", "evaluations"
+  add_foreign_key "viewpoints", "evaluations"
 end
