@@ -7,6 +7,7 @@ class ChartsController < ApplicationController
       def show
         #テンプレート変数の値を代入
         set_chart
+        @pagy, @evaluations = pagy(@chart.evaluations.order(id: :desc))
       end
     
       def new

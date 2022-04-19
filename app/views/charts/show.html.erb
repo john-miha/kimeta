@@ -1,6 +1,32 @@
 <h1>id: <%= @chart.id %> のメッセージ詳細ページ</h1>
 
-<p><%= @chart.title %></p>
+<p>Title: <%= @chart.title %></p>
+<p>Description: <%= @chart.description %></p>
+<p>Evaluations: </p>
+<ul>
+<% @evaluations.each do |evaluation| %>
+  <li>
+    <div>
+        <span>Item: <%= evaluation.items.first.name %></span>
+    </div>
+    <div>
+        <span>Viewpoint: <%= evaluation.viewpoints.first.name %></span>
+    </div>
+    <div>
+        <span>posted at <%= evaluation.created_at %></span>
+    </div>
+    <div>
+        <span>Comment: <%= evaluation.comment %></span>
+    </div>
+    <div>
+        <span>Score: <%= evaluation.score %></span>
+    </div>
+  </li>
+<% end %>
+</ul>
+
+<%== pagy_nav(@pagy) %>
+
 
 <%= link_to '一覧に戻る', charts_path %>
 <%= link_to 'このメッセージを編集する', edit_chart_path(@chart) %>

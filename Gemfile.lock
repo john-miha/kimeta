@@ -94,6 +94,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.4-x86_64-darwin)
       racc (~> 1.4)
+    pagy (5.10.1)
+      activesupport
     puma (5.6.4)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -183,6 +185,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mysql2 (~> 0.5)
+  pagy
   puma (~> 5.0)
   rails (~> 6.1.5)
   sass-rails (>= 6)
