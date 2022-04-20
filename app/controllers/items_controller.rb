@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-
     def show
         #テンプレート変数の値を代入
         @item = Item.find(params[:id])

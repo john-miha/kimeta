@@ -1,0 +1,7 @@
+<%= form_with(model: chart.evaluations.build) do |f| %>
+    <%= f.label :score, "Score" %>
+    <%= f.text_field :score %><br>
+    <%= f.label :comment, "Comment" %>
+    <%= f.text_field :comment %><br>
+    <%= f.submit 'submit' %>
+<% end %>

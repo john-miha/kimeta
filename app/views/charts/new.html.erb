@@ -5,6 +5,8 @@
     <%= f.label :description, "Description" %>
     <%= f.text_field :description %><br>
     <%= f.submit 'submit' %>
-  <% end %>
+<% end %>
+
+<%= render 'evaluations/new', chart: @chart %>
   
 <%= link_to '一覧に戻る', charts_path %>
