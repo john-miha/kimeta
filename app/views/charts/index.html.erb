@@ -1,4 +1,19 @@
-<h1>表一覧</h1>
+<div class="bg-warning p-3 p-sm-5 my-4 rounded">
+  <div class="text-center text-white">
+    <h1>kimeta</h1>
+  </div>
+</div>
+<div class="mb-3 row">
+  <div class="text-center">
+    <%= link_to 'つくってみる', new_chart_path ,class: "btn btn-primary"%>
+  </div>
+</div>
+
+<div class="bg-warning p-3 p-sm-3 my-4 rounded">
+  <div class="text-left text-white">
+    <h2>人気の比較表</h1>
+  </div>
+</div>
 
 <ul>
   <% @charts.each do |chart| %>
@@ -6,4 +21,9 @@
   <% end %>
 </ul>
 
-<%= link_to '新規作成', new_chart_path %>
+<div class="bg-warning p-3 p-sm-3 my-4 rounded">
+  <div class="text-left text-white">
+    <h2>人気のタグ</h1>
+  </div>
+</div>
+
