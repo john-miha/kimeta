@@ -18,6 +18,14 @@
 <ul>
   <% @charts.each do |chart| %>
     <li>表タイトル： <%= link_to chart.title, chart %> 表説明： <%= chart.description %></li>
+    <ul>
+      <% chart.evaluations.each do |evaluation| %>
+        <li>評値値 <%= evaluation.score %></li> 
+        <li>コメント <%= evaluation.comment %></li> 
+        <li>アイテム <%= evaluation.items.first.name %></li> 
+        <li>観点 <%= evaluation.viewpoints.first.name %></li> 
+      <% end %>
+    </ul>
   <% end %>
 </ul>
 

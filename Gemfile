@@ -49,3 +49,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #pagenation
 gem 'pagy'
+
+#debug with binding.pry
+gem 'pry-byebug', group: :development
+gem 'pry-rails'
+

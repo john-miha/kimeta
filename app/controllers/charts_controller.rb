@@ -16,7 +16,8 @@ class ChartsController < ApplicationController
     
       def create
         @chart = Chart.new(charts_params)
-    
+        #binding.pry
+
         if @chart.save
           flash[:success] = '正常に投稿されました'
           redirect_to  @chart
@@ -24,6 +25,21 @@ class ChartsController < ApplicationController
           flash.now[:danger] = '投稿されませんでした'
           render :new
         end
+ 
+
+        @evaluation = Evaluation.new
+        @evaluation.score = params[:evaluationscore] 
+        @evaluation.comment = params[:evaluationcomment]
+        @evaluation.chart_id = @chart.id
+        @evaluation.save
+        @item = Item.new
+        @item.evaluation_id = @evaluation.id
+        @item.name = params[:itemname]
+        @item.save
+        @viewpoint = Viewpoint.new
+        @viewpoint.evaluation_id = @evaluation.id
+        @viewpoint.name = params[:viewpointname]
+        @viewpoint.save 
       end
     
       def edit
@@ -61,5 +77,6 @@ class ChartsController < ApplicationController
       def charts_params
         params.require(:chart).permit(:title, :description)
       end
-       
+
+      
 end

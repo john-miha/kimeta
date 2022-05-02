@@ -9,9 +9,20 @@
     <%= f.text_field :title %><br>
     <%= f.label :description, "Description" %>
     <%= f.text_field :description %><br>
+
+    <%#ここからEvaluationの初期化処理%>
+
+    <%= f.label :score, "Score" %>
+    <%= text_field_tag :evaluationscore %><br>
+    <%= f.label :comment, "Comment" %>
+    <%= text_field_tag :evaluationcomment %><br>
+    <%= f.label :itemname, "Item" %>
+    <%= text_field_tag :itemname %><br>
+    <%= f.label :viewpointname, "Viewpoint" %>
+    <%= text_field_tag :viewpointname %><br>
+    
     <%= f.submit 'submit' %>
 <% end %>
 
-<%= render 'evaluations/new', chart: @chart %>
   
 <%= link_to '一覧に戻る', charts_path ,class: "btn btn-primary"%>
