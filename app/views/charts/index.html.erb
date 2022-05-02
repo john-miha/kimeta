@@ -17,13 +17,17 @@
 
 <ul>
   <% @charts.each do |chart| %>
-    <li>表タイトル： <%= link_to chart.title, chart %> 表説明： <%= chart.description %></li>
+    <li> <%= link_to "タイトル："+chart.title, chart %><br>説明： <%= chart.description %></li>
     <ul>
       <% chart.evaluations.each do |evaluation| %>
         <li>評値値 <%= evaluation.score %></li> 
         <li>コメント <%= evaluation.comment %></li> 
-        <li>アイテム <%= evaluation.items.first.name %></li> 
-        <li>観点 <%= evaluation.viewpoints.first.name %></li> 
+        <% #binding.pry %>
+        <% if !evaluation.items.empty? && !evaluation.viewpoints.empty?%>
+          <li>アイテム <%= evaluation.items.first.name %></li> 
+          <li>観点 <%= evaluation.viewpoints.first.name %></li> 
+        <% end %>
+
       <% end %>
     </ul>
   <% end %>

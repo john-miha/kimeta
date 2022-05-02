@@ -10,16 +10,31 @@
     <%= f.label :description, "Description" %>
     <%= f.text_field :description %><br>
 
-    <%#ここからEvaluationの初期化処理%>
 
-    <%= f.label :score, "Score" %>
-    <%= text_field_tag :evaluationscore %><br>
-    <%= f.label :comment, "Comment" %>
-    <%= text_field_tag :evaluationcomment %><br>
-    <%= f.label :itemname, "Item" %>
-    <%= text_field_tag :itemname %><br>
-    <%= f.label :viewpointname, "Viewpoint" %>
-    <%= text_field_tag :viewpointname %><br>
+
+    <%= f.label :itemname, "Item0" %>
+    <%= text_field_tag 'itemnames[]' %><br>
+    <%= f.label :itemname, "Item1" %>
+    <%= text_field_tag 'itemnames[]' %><br>
+    <%= f.label :itemname, "Item2" %>
+    <%= text_field_tag 'itemnames[]' %><br>
+
+    <%= f.label :viewpointname, "Viewpoint0" %>
+    <%= text_field_tag 'viewpointnames[]' %><br>
+    <%= f.label :viewpointname, "Viewpoint1" %>
+    <%= text_field_tag 'viewpointnames[]' %><br>
+    <%= f.label :viewpointname, "Viewpoint2" %>
+    <%= text_field_tag 'viewpointnames[]' %><br>
+
+    <% for id in 0..8 do %>
+      <%= f.label :score, "Score" + id.to_s %>
+      <%= text_field_tag 'evaluationscores[]' %><br>
+    <% end %>
+
+    <% for id in 0..8 do %>
+      <%= f.label :comment, "Comment" + id.to_s %>
+      <%= text_field_tag 'evaluationcomments[]' %><br>
+    <% end %>
     
     <%= f.submit 'submit' %>
 <% end %>

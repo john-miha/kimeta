@@ -18,7 +18,7 @@ class ChartsController < ApplicationController
     
       def create
         @chart = Chart.new(charts_params)
-        #binding.pry
+        binding.pry
 
         if @chart.save
           flash[:success] = '正常に投稿されました'
@@ -27,21 +27,33 @@ class ChartsController < ApplicationController
           flash.now[:danger] = '投稿されませんでした'
           render :new
         end
- 
 
-        @evaluation = Evaluation.new
-        @evaluation.score = params[:evaluationscore] 
-        @evaluation.comment = params[:evaluationcomment]
-        @evaluation.chart_id = @chart.id
-        @evaluation.save
-        @item = Item.new
-        @item.evaluation_id = @evaluation.id
-        @item.name = params[:itemname]
-        @item.save
-        @viewpoint = Viewpoint.new
-        @viewpoint.evaluation_id = @evaluation.id
-        @viewpoint.name = params[:viewpointname]
-        @viewpoint.save 
+        #配列でやってくるparamsを一時変数に格納
+        evaluationscore = params[:evaluationscores]
+        evaluationcomment = params[:evaluationcomments]
+        itemname = params[:itemnames]
+        viewpointname = params[:viewpointnames]
+
+        #ここから下をfor文で回す
+        for id in 0..8 do
+          @evaluation = Evaluation.new
+          @evaluation.score = evaluationscore[id]
+          @evaluation.comment = evaluationcomment[id]
+          @evaluation.chart_id = @chart.id
+          @evaluation.save
+
+          @item = Item.new
+          @item.evaluation_id = @evaluation.id
+          @item.name = itemname[id]
+          @item.save
+
+          @viewpoint = Viewpoint.new
+          @viewpoint.evaluation_id = @evaluation.id
+          @viewpoint.name = viewpointname[id]
+          @viewpoint.save 
+        end
+        #ここまでをfor文で回す
+
       end
     
       def edit
@@ -62,7 +74,7 @@ class ChartsController < ApplicationController
     
       def destroy
         set_chart
-        @chart_header.destroy
+        @chart.destroy
     
         flash[:success] = 'Message は正常に削除されました'
         redirect_to charts_url

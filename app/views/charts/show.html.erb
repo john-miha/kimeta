@@ -7,11 +7,18 @@
 <%# 配列の非空判定 %>
 <% if !@chart.evaluations.empty? %>
     <ul>
+    <% #カウンタ %>
+    <% i = 0 %>
     <% @chart.evaluations.each do |evaluation| %>
-        <li>評値値 <%= evaluation.score %></li> 
-        <li>コメント <%= evaluation.comment %></li> 
-        <li>アイテム <%= evaluation.items.first.name %></li> 
-        <li>観点 <%= evaluation.viewpoints.first.name %></li> 
+        <% #binding.pry%>
+        <li>評値値<%= i %>: <%= evaluation.score %></li> 
+        <li>コメント<%= i %>: <%= evaluation.comment %></li> 
+        <% #evaluation1つにつき、itemとviewpointは1つしか紐づいていないのでfirstでも正しい挙動をする %>
+        <% if !evaluation.items.empty? && !evaluation.viewpoints.empty?%>
+            <li>アイテム<%= i %>: <%= evaluation.items.first.name %></li> 
+            <li>観点<%= i %>: <%= evaluation.viewpoints.first.name %></li> 
+        <% end %>
+        <% i += 1 %>
     <% end %>
     </ul>
 <% else %>
