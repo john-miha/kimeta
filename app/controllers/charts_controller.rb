@@ -1,7 +1,9 @@
 class ChartsController < ApplicationController
     def index
         #テンプレート変数の値を代入
-        @charts = Chart.all
+        #@charts = Chart.all
+        #pagyの設定（要確認）
+        @pagy, @charts = pagy(Chart.all)
       end
     
       def show

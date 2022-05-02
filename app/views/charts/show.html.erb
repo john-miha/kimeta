@@ -2,28 +2,21 @@
 
 <p>Title: <%= @chart.title %></p>
 <p>Description: <%= @chart.description %></p>
-<p>Evaluations: </p>
-<ul>
-<% @evaluations.each do |evaluation| %>
-  <li>
-    <div>
-        <span>Item: <%= evaluation.items.first.name %></span>
-    </div>
-    <div>
-        <span>Viewpoint: <%= evaluation.viewpoints.first.name %></span>
-    </div>
-    <div>
-        <span>posted at <%= evaluation.created_at %></span>
-    </div>
-    <div>
-        <span>Comment: <%= evaluation.comment %></span>
-    </div>
-    <div>
-        <span>Score: <%= evaluation.score %></span>
-    </div>
-  </li>
+
+
+<%# 配列の非空判定 %>
+<% if !@chart.evaluations.empty? %>
+    <ul>
+    <% @chart.evaluations.each do |evaluation| %>
+        <li>評値値 <%= evaluation.score %></li> 
+        <li>コメント <%= evaluation.comment %></li> 
+        <li>アイテム <%= evaluation.items.first.name %></li> 
+        <li>観点 <%= evaluation.viewpoints.first.name %></li> 
+    <% end %>
+    </ul>
+<% else %>
+    <p>評価項目がありません</p>
 <% end %>
-</ul>
 
 <%== pagy_bootstrap_nav(@pagy) %>
 
