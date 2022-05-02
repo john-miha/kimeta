@@ -18,7 +18,7 @@ class ChartsController < ApplicationController
     
       def create
         @chart = Chart.new(charts_params)
-        binding.pry
+        #binding.pry
 
         if @chart.save
           flash[:success] = '正常に投稿されました'
@@ -35,6 +35,15 @@ class ChartsController < ApplicationController
         viewpointname = params[:viewpointnames]
 
         #ここから下をfor文で回す
+        #eval[0][3][6]のitemは共通なので、カウンタか剰余でそこを表現してあげないといけない
+        #eval[0][1][2]のViewpointは共通
+        #↑は嘘。多対多に作り直す必要があるかも。evalは複数のitemを持つし、itemも複数のevalをもつ。中間テーブルを作る。
+
+        #一旦今のままのテーブルで行く。id=0のとき, item=0 1のとき1, 2のとき2
+        #                          3のとき0,4のとき1, 5のとき2
+        #                          なので、itemについては3の剰余でいける。
+        #viewpointについては、条件分岐を書く必要がある。
+
         for id in 0..8 do
           @evaluation = Evaluation.new
           @evaluation.score = evaluationscore[id]
@@ -44,12 +53,18 @@ class ChartsController < ApplicationController
 
           @item = Item.new
           @item.evaluation_id = @evaluation.id
-          @item.name = itemname[id]
+          @item.name = itemname[id%3]
           @item.save
 
           @viewpoint = Viewpoint.new
           @viewpoint.evaluation_id = @evaluation.id
-          @viewpoint.name = viewpointname[id]
+          if id <3 then
+            @viewpoint.name = viewpointname[0]
+          elsif id <6 then 
+            @viewpoint.name = viewpointname[1]
+          else
+            @viewpoint.name = viewpointname[2]
+          end
           @viewpoint.save 
         end
         #ここまでをfor文で回す

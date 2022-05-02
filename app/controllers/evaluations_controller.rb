@@ -21,7 +21,7 @@ class EvaluationsController < ApplicationController
         @viewpoint.name = params[:viewpointname]
         @viewpoint.save
 
-        binding.pry
+        #binding.pry
 
     end
 

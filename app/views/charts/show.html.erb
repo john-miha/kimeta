@@ -4,6 +4,67 @@
 <p>Description: <%= @chart.description %></p>
 
 
+
+<%# アイテムを重複して持たせる構造にしてしまった以上、重複を削除するしかない%>
+<%# distinctメソッドで重複を削除したテーブルを作ってeach文を回せばOK。evaluation.nameは互いに独立しているから無理か。%>
+<%# 観点からユニークな要素を抜きだして、要素名でfind_byして並べる%>
+<%# アイテムからユニークな要素を抜き出して、要素名でfind_byして並べる%>
+
+<% tmp_name = [] %>
+<% tmp_viewpoint = [] %>
+
+<% @chart.evaluations.each do |evaluation| %>
+    <%# もしtmp_nameに evaluation.items.first.name が含まれていなければ保存%>
+    <% if !tmp_name.include?(evaluation.items.first.name) then%>
+        <% tmp_name.push(evaluation.items.first.name) %>
+    <%# 含まれて入ればスキップ%>
+    <% end %>
+    <%# もしtmp_nameに evaluation.viewpoints.first.name が含まれていなければ保存%>
+    <% if !tmp_viewpoint.include?(evaluation.viewpoints.first.name) then%>
+        <% tmp_viewpoint.push(evaluation.viewpoints.first.name) %>
+    <%# 含まれて入ればスキップ%>
+    <% end %>
+
+<% end %>
+ユニークなアイテム<%= tmp_name %>
+<br>
+ユニークな観点<%= tmp_viewpoint %>
+
+
+
+
+<table class="table">
+<thead>
+  <tr>
+    <th>観点</th>
+    <th><%= tmp_name[0]%></th>
+    <th><%= tmp_name[1]%></th>
+    <th><%= tmp_name[2]%></th>
+  </tr>
+</thead>
+<tbody>
+<tr>
+  <td><%= tmp_viewpoint[0]%></td>
+  <td>0</td>
+  <td>1</td>
+  <td>2</td>
+</tr>
+<tr>
+  <td><%= tmp_viewpoint[1]%></td>
+  <td>3</td>
+  <td>4</td>
+  <td>5</td>
+</tr>
+<tr>
+  <td><%= tmp_viewpoint[2]%></td>
+  <td>6</td>
+  <td>7</td>
+  <td>8</td>
+</tr>
+
+<tbody>
+</table>
+
 <%# 配列の非空判定 %>
 <% if !@chart.evaluations.empty? %>
     <ul>
