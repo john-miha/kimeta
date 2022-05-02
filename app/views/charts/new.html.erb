@@ -10,31 +10,72 @@
     <%= f.label :description, "Description" %>
     <%= f.text_field :description %><br>
 
+    <%#ここからEvaluationの初期化処理%>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>観点</th>
+          <th>
+            <%= f.label :itemname, "Item0" %>
+            <%= text_field_tag 'itemnames[]' %>
+          </th>
+          <th>
+            <%= f.label :itemname, "Item1" %>
+            <%= text_field_tag 'itemnames[]' %><br>
+          </th>
+          <th>
+            <%= f.label :itemname, "Item2" %>
+            <%= text_field_tag 'itemnames[]' %><br>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <%= f.label :viewpointname, "Viewpoint0" %>
+            <%= text_field_tag 'viewpointnames[]' %>
+          </td>
+          <% for id in 0..2 do %>
+            <td>
+              <%= f.label :score, "Score" + id.to_s %>
+              <%= text_field_tag 'evaluationscores[]' %>
+              <%= f.label :comment, "Comment" + id.to_s %>
+              <%= text_field_tag 'evaluationcomments[]' %><br>
+            </td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>
+            <%= f.label :viewpointname, "Viewpoint1" %>
+            <%= text_field_tag 'viewpointnames[]' %>
+          </td>
+          <% for id in 3..5 do %>
+            <td>
+              <%= f.label :score, "Score" + id.to_s %>
+              <%= text_field_tag 'evaluationscores[]' %>
+              <%= f.label :comment, "Comment" + id.to_s %>
+              <%= text_field_tag 'evaluationcomments[]' %><br>
+            </td>
+          <% end %>
 
+        </tr>
+        <tr>
+          <td>
+            <%= f.label :viewpointname, "Viewpoint2" %>
+            <%= text_field_tag 'viewpointnames[]' %>
+          </td>
+          <% for id in 6..8 do %>
+            <td>
+              <%= f.label :score, "Score" + id.to_s %>
+              <%= text_field_tag 'evaluationscores[]' %>
+              <%= f.label :comment, "Comment" + id.to_s %>
+              <%= text_field_tag 'evaluationcomments[]' %><br>
+            </td>
+          <% end %>
 
-    <%= f.label :itemname, "Item0" %>
-    <%= text_field_tag 'itemnames[]' %><br>
-    <%= f.label :itemname, "Item1" %>
-    <%= text_field_tag 'itemnames[]' %><br>
-    <%= f.label :itemname, "Item2" %>
-    <%= text_field_tag 'itemnames[]' %><br>
-
-    <%= f.label :viewpointname, "Viewpoint0" %>
-    <%= text_field_tag 'viewpointnames[]' %><br>
-    <%= f.label :viewpointname, "Viewpoint1" %>
-    <%= text_field_tag 'viewpointnames[]' %><br>
-    <%= f.label :viewpointname, "Viewpoint2" %>
-    <%= text_field_tag 'viewpointnames[]' %><br>
-
-    <% for id in 0..8 do %>
-      <%= f.label :score, "Score" + id.to_s %>
-      <%= text_field_tag 'evaluationscores[]' %><br>
-    <% end %>
-
-    <% for id in 0..8 do %>
-      <%= f.label :comment, "Comment" + id.to_s %>
-      <%= text_field_tag 'evaluationcomments[]' %><br>
-    <% end %>
+        </tr>
+      </tbody>
+    </table>
     
     <%= f.submit 'submit' %>
 <% end %>
