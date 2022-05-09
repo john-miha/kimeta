@@ -26,12 +26,15 @@
     <% end %>
 
 <% end %>
-ユニークなアイテム<%= tmp_name %>
-<br>
-ユニークな観点<%= tmp_viewpoint %>
+<%# ユニークなアイテム tmp_name %>
+<%# ユニークな観点 tmp_viewpoint %>
 
+<%# tmpclass = @chart.evaluations.find_by(comment: "c1") %>
+<%#= tmpclass.score %>
+<%#= tmpclass.comment %>
 
-
+<%# 配列の非空判定 %>
+<% if !@chart.evaluations.empty? %>
 
 <table class="table">
 <thead>
@@ -45,43 +48,53 @@
 <tbody>
 <tr>
   <td><%= tmp_viewpoint[0]%></td>
-  <td>0</td>
-  <td>1</td>
-  <td>2</td>
+  <td>
+    score:<%= @chart.evaluations.first.score %><br>
+    comment:<%= @chart.evaluations.first.comment %>
+  </td>
+  <td>
+    score:<%= @chart.evaluations[1].score %><br>
+    comment:<%= @chart.evaluations[1].comment %>
+  </td>
+  <td>
+    score:<%= @chart.evaluations[2].score %><br>
+    comment:<%= @chart.evaluations[2].comment %>
+  </td>
 </tr>
 <tr>
   <td><%= tmp_viewpoint[1]%></td>
-  <td>3</td>
-  <td>4</td>
-  <td>5</td>
+  <td>
+    score:<%= @chart.evaluations[3].score %><br>
+    comment:<%= @chart.evaluations[3].comment %>
+  </td>
+  <td>
+    score:<%= @chart.evaluations[4].score %><br>
+    comment:<%= @chart.evaluations[4].comment %>
+  </td>
+  <td>
+    score:<%= @chart.evaluations[5].score %><br>
+    comment:<%= @chart.evaluations[5].comment %>
+  </td>
 </tr>
 <tr>
   <td><%= tmp_viewpoint[2]%></td>
-  <td>6</td>
-  <td>7</td>
-  <td>8</td>
+  <td>
+    score:<%= @chart.evaluations[6].score %><br>
+    comment:<%= @chart.evaluations[6].comment %>
+  </td>
+  <td>
+    score:<%= @chart.evaluations[7].score %><br>
+    comment:<%= @chart.evaluations[7].comment %>
+  </td>
+  <td>
+    score:<%= @chart.evaluations[8].score %><br>
+    comment:<%= @chart.evaluations[8].comment %>
+  </td>
 </tr>
 
 <tbody>
 </table>
 
-<%# 配列の非空判定 %>
-<% if !@chart.evaluations.empty? %>
-    <ul>
-    <% #カウンタ %>
-    <% i = 0 %>
-    <% @chart.evaluations.each do |evaluation| %>
-        <% #binding.pry%>
-        <li>評値値<%= i %>: <%= evaluation.score %></li> 
-        <li>コメント<%= i %>: <%= evaluation.comment %></li> 
-        <% #evaluation1つにつき、itemとviewpointは1つしか紐づいていないのでfirstでも正しい挙動をする %>
-        <% if !evaluation.items.empty? && !evaluation.viewpoints.empty?%>
-            <li>アイテム<%= i %>: <%= evaluation.items.first.name %></li> 
-            <li>観点<%= i %>: <%= evaluation.viewpoints.first.name %></li> 
-        <% end %>
-        <% i += 1 %>
-    <% end %>
-    </ul>
 <% else %>
     <p>評価項目がありません</p>
 <% end %>
