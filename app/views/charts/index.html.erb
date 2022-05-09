@@ -15,19 +15,86 @@
   </div>
 </div>
 
+<% tmp_name = [] %>
+<% tmp_viewpoint = [] %>
+
 <ul>
   <% @charts.each do |chart| %>
     <li> <%= link_to "タイトル："+chart.title, chart %><br>説明： <%= chart.description %></li>
-    <ul>
-      <% chart.evaluations.each do |evaluation| %>
-        <li>評値値 <%= evaluation.score %></li> 
-        <li>コメント <%= evaluation.comment %></li> 
-        <% #binding.pry %>
-        <% if !evaluation.items.empty? && !evaluation.viewpoints.empty?%>
-          <li>アイテム <%= evaluation.items.first.name %></li> 
-          <li>観点 <%= evaluation.viewpoints.first.name %></li> 
-        <% end %>
+
+    <%#項目名を取得 %>
+    <% chart.evaluations.each do |evaluation| %>
+      <%# もしtmp_nameに evaluation.items.first.name が含まれていなければ保存%>
+      <% if !tmp_name.include?(evaluation.items.first.name) then%>
+          <% tmp_name.push(evaluation.items.first.name) %>
+      <%# 含まれて入ればスキップ%>
       <% end %>
+      <%# もしtmp_nameに evaluation.viewpoints.first.name が含まれていなければ保存%>
+      <% if !tmp_viewpoint.include?(evaluation.viewpoints.first.name) then%>
+          <% tmp_viewpoint.push(evaluation.viewpoints.first.name) %>
+      <%# 含まれて入ればスキップ%>
+      <% end %>
+  
+  <% end %>
+    <ul>
+    <table class="table">
+    <thead>
+      <tr>
+        <th>観点</th>
+        <th><%= tmp_name[0]%></th>
+        <th><%= tmp_name[1]%></th>
+        <th><%= tmp_name[2]%></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><%= tmp_viewpoint[0]%></td>
+      <td>
+        score:<%= chart.evaluations.first.score %><br>
+        comment:<%= chart.evaluations.first.comment %>
+      </td>
+      <td>
+        score:<%= chart.evaluations[1].score %><br>
+        comment:<%= chart.evaluations[1].comment %>
+      </td>
+      <td>
+        score:<%= chart.evaluations[2].score %><br>
+        comment:<%= chart.evaluations[2].comment %>
+      </td>
+    </tr>
+    <tr>
+      <td><%= tmp_viewpoint[1]%></td>
+      <td>
+        score:<%= chart.evaluations[3].score %><br>
+        comment:<%= chart.evaluations[3].comment %>
+      </td>
+      <td>
+        score:<%= chart.evaluations[4].score %><br>
+        comment:<%= chart.evaluations[4].comment %>
+      </td>
+      <td>
+        score:<%= chart.evaluations[5].score %><br>
+        comment:<%= chart.evaluations[5].comment %>
+      </td>
+    </tr>
+    <tr>
+      <td><%= tmp_viewpoint[2]%></td>
+      <td>
+        score:<%= chart.evaluations[6].score %><br>
+        comment:<%= chart.evaluations[6].comment %>
+      </td>
+      <td>
+        score:<%= chart.evaluations[7].score %><br>
+        comment:<%= chart.evaluations[7].comment %>
+      </td>
+      <td>
+        score:<%= chart.evaluations[8].score %><br>
+        comment:<%= chart.evaluations[8].comment %>
+      </td>
+    </tr>
+    
+    <tbody>
+    </table>
     </ul>
   <% end %>
   <%== pagy_bootstrap_nav(@pagy) %>

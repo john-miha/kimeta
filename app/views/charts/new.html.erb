@@ -1,13 +1,13 @@
 
 <div class="bg-warning p-3 p-sm-3 my-4 rounded">
   <div class="text-left text-white">
-    <h1>メッセージ新規作成ページ</h1>
+    <h1>比較表新規作成ページ</h1>
   </div>
 </div>
 <%= form_with(model: @chart) do |f| %>
-    <%= f.label :title, "Title" %>
+    <%= f.label :title, "比較表の名前" %>
     <%= f.text_field :title %><br>
-    <%= f.label :description, "Description" %>
+    <%= f.label :description, "比較表の説明" %>
     <%= f.text_field :description %><br>
 
     <%#ここからEvaluationの初期化処理%>
@@ -16,15 +16,15 @@
         <tr>
           <th>観点</th>
           <th>
-            <%= f.label :itemname, "Item0" %>
+            <%= f.label :itemname, "アイテム1" %>
             <%= text_field_tag 'itemnames[]' %>
           </th>
           <th>
-            <%= f.label :itemname, "Item1" %>
+            <%= f.label :itemname, "アイテム2" %>
             <%= text_field_tag 'itemnames[]' %><br>
           </th>
           <th>
-            <%= f.label :itemname, "Item2" %>
+            <%= f.label :itemname, "アイテム3" %>
             <%= text_field_tag 'itemnames[]' %><br>
           </th>
         </tr>
@@ -32,7 +32,7 @@
       <tbody>
         <tr>
           <td>
-            <%= f.label :viewpointname, "Viewpoint0" %>
+            <%= f.label :viewpointname, "1" %>
             <%= text_field_tag 'viewpointnames[]' %>
           </td>
           <% for id in 0..2 do %>
@@ -46,7 +46,7 @@
         </tr>
         <tr>
           <td>
-            <%= f.label :viewpointname, "Viewpoint1" %>
+            <%= f.label :viewpointname, "2" %>
             <%= text_field_tag 'viewpointnames[]' %>
           </td>
           <% for id in 3..5 do %>
@@ -61,7 +61,7 @@
         </tr>
         <tr>
           <td>
-            <%= f.label :viewpointname, "Viewpoint2" %>
+            <%= f.label :viewpointname, "3" %>
             <%= text_field_tag 'viewpointnames[]' %>
           </td>
           <% for id in 6..8 do %>
