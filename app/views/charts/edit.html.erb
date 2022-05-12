@@ -10,27 +10,35 @@ urlを指定して、飛び先を教えてあげる。
 <h1>id: <%= @chart.id %> の比較表編集ページ</h1>
 
 <%= form_with(model: @chart) do |f| %>
+    <%#なぜここでは既存の値が取れてきているのか。 :titleが@chart.titleと紐づいているのはなぜか。%>
     <%= f.label :title, "Title" %>
     <%= f.text_field :title %><br>
     <%= f.label :description, "Description" %>
     <%= f.text_field :description %><br>
 
-    <%#ここからEvaluationの初期化処理%>
+    <%#これでも取得できた。%>
+    <%= f.label :evaluations, "Evaluations" %>
+    <%= f.text_field :evaluations %><br>
+
+
+    <%# binding.pry %>
     <table class="table">
       <thead>
         <tr>
           <th>観点</th>
           <th>
+            <%#既存のレコードで初期値を設定したい。submitの結果、同じidでレコードが保存されればそれでOK%>
             <%= f.label :itemname, "アイテム1" %>
-            <%= text_field_tag 'itemnames[]' %>
+            <%= text_field_tag 'itemnames[]', @chart.evaluations[0].items[0].name, placeholder: "入力してください" %>
+            
           </th>
           <th>
             <%= f.label :itemname, "アイテム2" %>
-            <%= text_field_tag 'itemnames[]' %><br>
+            <%= text_field_tag 'itemnames[]', @chart.evaluations[1].items[0].name, placeholder: "入力してください"  %><br>
           </th>
           <th>
             <%= f.label :itemname, "アイテム3" %>
-            <%= text_field_tag 'itemnames[]' %><br>
+            <%= text_field_tag 'itemnames[]', @chart.evaluations[2].items[0].name, placeholder: "入力してください" %><br>
           </th>
         </tr>
       </thead>
@@ -38,60 +46,57 @@ urlを指定して、飛び先を教えてあげる。
         <tr>
           <td>
             <%= f.label :viewpointname, "1" %>
-            <%= text_field_tag 'viewpointnames[]' %>
+            <%= text_field_tag 'viewpointnames[]', @chart.evaluations[0].viewpoints[0].name, placeholder: "入力してください"  %>
           </td>
           <% for id in 0..2 do %>
             <td>
               <%= f.label :score, "Score" + id.to_s %>
-              <%#= text_field_tag 'evaluationscores[]' %>
               <select name="evaluationscores[]">
                 <option value=1>1</option>
-                <option selected="selected" value=2>2</option>
+                <option value=2>2</option>
                 <option value=3>3</option>
               </select>
               <br>
               <%= f.label :comment, "Comment" + id.to_s %>
-              <%= text_field_tag 'evaluationcomments[]' %><br>
+              <%= text_field_tag 'evaluationcomments[]' , @chart.evaluations[id].comment, placeholder: "未入力です" %><br>
             </td>
           <% end %>
         </tr>
         <tr>
           <td>
             <%= f.label :viewpointname, "2" %>
-            <%= text_field_tag 'viewpointnames[]' %>
+            <%= text_field_tag 'viewpointnames[]', @chart.evaluations[3].viewpoints[0].name, placeholder: "入力してください" %>
           </td>
           <% for id in 3..5 do %>
             <td>
               <%= f.label :score, "Score" + id.to_s %>
-              <%#= text_field_tag 'evaluationscores[]' %>
               <select name="evaluationscores[]">
                 <option value=1>1</option>
-                <option selected="selected" value=2>2</option>
+                <option value=2>2</option>
                 <option value=3>3</option>
               </select>
               <br>
               <%= f.label :comment, "Comment" + id.to_s %>
-              <%= text_field_tag 'evaluationcomments[]' %><br>
+              <%= text_field_tag 'evaluationcomments[]', @chart.evaluations[id].comment, placeholder: "未入力です"  %><br>
             </td>
           <% end %>
         </tr>
         <tr>
           <td>
             <%= f.label :viewpointname, "3" %>
-            <%= text_field_tag 'viewpointnames[]' %>
+            <%= text_field_tag 'viewpointnames[]', @chart.evaluations[6].viewpoints[0].name, placeholder: "入力してください" %>
           </td>
           <% for id in 6..8 do %>
             <td>
               <%= f.label :score, "Score" + id.to_s %>
-              <%#= text_field_tag 'evaluationscores[]' %>
               <select name="evaluationscores[]">
                 <option value=1>1</option>
-                <option selected="selected" value=2>2</option>
+                <option value=2>2</option>
                 <option value=3>3</option>
               </select>
               <br>
               <%= f.label :comment, "Comment" + id.to_s %>
-              <%= text_field_tag 'evaluationcomments[]' %><br>
+              <%= text_field_tag 'evaluationcomments[]', @chart.evaluations[id].comment, placeholder: "未入力です" %><br>
             </td>
           <% end %>
 

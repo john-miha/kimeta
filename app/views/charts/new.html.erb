@@ -5,10 +5,10 @@
   </div>
 </div>
 <%= form_with(model: @chart) do |f| %>
-    <%= f.label :title, "比較表の名前" %>
-    <%= f.text_field :title %><br>
-    <%= f.label :description, "比較表の説明" %>
-    <%= f.text_field :description %><br>
+    <%= f.label :title, "名前" %>
+    <%= f.text_field :title, :placeholder => "比較表のタイトルを入力"  %><br>
+    <%= f.label :description, "説明" %>
+    <%= f.text_field :description, :placeholder => "比較表の説明を入力" %><br>
 
     <%#ここからEvaluationの初期化処理%>
     <table class="table">
@@ -17,15 +17,15 @@
           <th>観点</th>
           <th>
             <%= f.label :itemname, "アイテム1" %>
-            <%= text_field_tag 'itemnames[]' %>
+            <%= text_field_tag 'itemnames[]',"", placeholder: "比較するものを入力" %>
           </th>
           <th>
             <%= f.label :itemname, "アイテム2" %>
-            <%= text_field_tag 'itemnames[]' %><br>
+            <%= text_field_tag 'itemnames[]',"",  placeholder: "比較するものを入力" %><br>
           </th>
           <th>
             <%= f.label :itemname, "アイテム3" %>
-            <%= text_field_tag 'itemnames[]' %><br>
+            <%= text_field_tag 'itemnames[]',"",  placeholder: "比較するものを入力" %><br>
           </th>
         </tr>
       </thead>
@@ -33,7 +33,7 @@
         <tr>
           <td>
             <%= f.label :viewpointname, "1" %>
-            <%= text_field_tag 'viewpointnames[]' %>
+            <%= text_field_tag 'viewpointnames[]',"",  placeholder: "比較する観点を入力" %>
           </td>
           <% for id in 0..2 do %>
             <td>
@@ -46,14 +46,14 @@
               </select>
               <br>
               <%= f.label :comment, "Comment" + id.to_s %>
-              <%= text_field_tag 'evaluationcomments[]' %><br>
+              <%= text_field_tag 'evaluationcomments[]',"",  placeholder: "任意入力" %><br>
             </td>
           <% end %>
         </tr>
         <tr>
           <td>
             <%= f.label :viewpointname, "2" %>
-            <%= text_field_tag 'viewpointnames[]' %>
+            <%= text_field_tag 'viewpointnames[]',"",  placeholder: "比較する観点を入力" %>
           </td>
           <% for id in 3..5 do %>
             <td>
@@ -66,14 +66,14 @@
               </select>
               <br>
               <%= f.label :comment, "Comment" + id.to_s %>
-              <%= text_field_tag 'evaluationcomments[]' %><br>
+              <%= text_field_tag 'evaluationcomments[]',"",  placeholder: "任意入力" %><br>
             </td>
           <% end %>
         </tr>
         <tr>
           <td>
             <%= f.label :viewpointname, "3" %>
-            <%= text_field_tag 'viewpointnames[]' %>
+            <%= text_field_tag 'viewpointnames[]',"",  placeholder: "比較する観点を入力" %>
           </td>
           <% for id in 6..8 do %>
             <td>
@@ -86,7 +86,7 @@
               </select>
               <br>
               <%= f.label :comment, "Comment" + id.to_s %>
-              <%= text_field_tag 'evaluationcomments[]' %><br>
+              <%= text_field_tag 'evaluationcomments[]',"",  placeholder: "任意入力" %><br>
             </td>
           <% end %>
 
