@@ -28,18 +28,21 @@ urlを指定して、飛び先を教えてあげる。
           <th>観点</th>
           <th>
             <%#既存のレコードで初期値を設定したい。submitの結果、同じidでレコードが保存されればそれでOK%>
-            <%= f.label :itemname, "アイテム1" %>
-            <%= text_field_tag 'itemnames[]', @chart.evaluations[0].items[0].name, placeholder: "入力してください" %>
+            <%= f.label :itemname, "1" %>
+            <%= text_field_tag 'itemnames[]', @chart.evaluations[0].items[0].name, placeholder: "比較するアイテムを入力" %>
             
           </th>
           <th>
-            <%= f.label :itemname, "アイテム2" %>
-            <%= text_field_tag 'itemnames[]', @chart.evaluations[1].items[0].name, placeholder: "入力してください"  %><br>
+            <%= f.label :itemname, "2" %>
+            <%= text_field_tag 'itemnames[]', @chart.evaluations[1].items[0].name, placeholder: "比較するアイテムを入力"  %><br>
           </th>
           <th>
-            <%= f.label :itemname, "アイテム3" %>
-            <%= text_field_tag 'itemnames[]', @chart.evaluations[2].items[0].name, placeholder: "入力してください" %><br>
+            <%= f.label :itemname, "3" %>
+            <%= text_field_tag 'itemnames[]', @chart.evaluations[2].items[0].name, placeholder: "比較するアイテムを入力" %><br>
           </th>
+          <th>
+          MyBEST
+        </th>
         </tr>
       </thead>
       <tbody>
