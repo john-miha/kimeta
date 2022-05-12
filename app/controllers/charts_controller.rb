@@ -24,7 +24,6 @@ class ChartsController < ApplicationController
       flash[:success] = '正常に投稿されました'
     else
       flash.now[:danger] = '投稿されませんでした'
-      render :new
     end
 
     #トランザクション処理を実装する
@@ -78,7 +77,7 @@ class ChartsController < ApplicationController
 
     # トランザクション失敗時の処理
     rescue => e
-      flash.now[:danger] = '投稿されませんでした'
+      flash.now[:danger] = '必須項目が不足しています。投稿されませんでした'
       render :new
     #rescueにはendが不要
       #正常に投稿されたらredirect。ここは本当はトランザクションで囲んだほうがいい。
@@ -98,7 +97,6 @@ class ChartsController < ApplicationController
       #redirect_to  @chart
     else
       flash.now[:danger] = '投稿されませんでした'
-      render :edit
     end
 
     #トランザクション処理を実装する
@@ -172,7 +170,9 @@ class ChartsController < ApplicationController
 
   # Strong Parameter
   def charts_params
-    params.require(:chart).permit(:title, :description)
+    #params.require(:chart).permit(:title, :description)
+    params.require(:chart).permit(:title, :description, :mybest, :comment)
+
   end
 
 end
