@@ -27,9 +27,6 @@
             <%= f.label :itemname, "3" %>
             <%= text_field_tag 'itemnames[]',"",  placeholder: "比較するアイテムを入力" %><br>
           </th>
-          <th>
-            MyBEST
-          </th>
         </tr>
       </thead>
       <tbody>
@@ -52,9 +49,6 @@
               <%= text_field_tag 'evaluationcomments[]',"",  placeholder: "任意入力" %><br>
             </td>
           <% end %>
-          <td>
-            radio-button
-          </td>
         </tr>
         <tr>
           <td>
@@ -75,9 +69,6 @@
               <%= text_field_tag 'evaluationcomments[]',"",  placeholder: "任意入力" %><br>
             </td>
           <% end %>
-          <td>
-            radio-button
-          </td>
         </tr>
         <tr>
           <td>
@@ -98,12 +89,28 @@
               <%= text_field_tag 'evaluationcomments[]',"",  placeholder: "任意入力" %><br>
             </td>
           <% end %>
+        </tr>
+        <tr>
+          <td>
+            MyBEST
+          </td>
+          <td>
+            radio-button
+          </td>
+          <td>
+            radio-button
+          </td>
           <td>
             radio-button
           </td>
         </tr>
       </tbody>
     </table>
+
+    <%= f.label :summarycomment, "総評" %>
+    <br>
+    <%= f.text_field :summarycomment, :placeholder => "総評を入力してください"  %><br>
+
     
     <%= f.submit 'submit' %>
 <% end %>

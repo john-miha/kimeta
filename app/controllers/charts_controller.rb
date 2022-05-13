@@ -171,7 +171,7 @@ class ChartsController < ApplicationController
   # Strong Parameter
   def charts_params
     #params.require(:chart).permit(:title, :description)
-    params.require(:chart).permit(:title, :description, :mybest, :comment)
+    params.require(:chart).permit(:title, :description, :mybest, :summarycomment)
 
   end
 

@@ -30,7 +30,6 @@ urlを指定して、飛び先を教えてあげる。
             <%#既存のレコードで初期値を設定したい。submitの結果、同じidでレコードが保存されればそれでOK%>
             <%= f.label :itemname, "1" %>
             <%= text_field_tag 'itemnames[]', @chart.evaluations[0].items[0].name, placeholder: "比較するアイテムを入力" %>
-            
           </th>
           <th>
             <%= f.label :itemname, "2" %>
@@ -40,9 +39,6 @@ urlを指定して、飛び先を教えてあげる。
             <%= f.label :itemname, "3" %>
             <%= text_field_tag 'itemnames[]', @chart.evaluations[2].items[0].name, placeholder: "比較するアイテムを入力" %><br>
           </th>
-          <th>
-          MyBEST
-        </th>
         </tr>
       </thead>
       <tbody>
@@ -102,10 +98,29 @@ urlを指定して、飛び先を教えてあげる。
               <%= text_field_tag 'evaluationcomments[]', @chart.evaluations[id].comment, placeholder: "未入力です" %><br>
             </td>
           <% end %>
-
         </tr>
+        <tr>
+        <td>
+          MyBEST
+        </td>
+        <td>
+          radio-button
+        </td>
+        <td>
+          radio-button
+        </td>
+        <td>
+          radio-button
+        </td>
+      </tr>
       </tbody>
     </table>
+
+
+    <%= f.label :summarycomment, "総合コメント" %>
+    <br>
+    <%= f.text_field :summarycomment  %><br>
+
 
     <%= f.submit 'submit' %>
 <% end %>
