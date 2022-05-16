@@ -95,13 +95,13 @@
             MyBEST
           </td>
           <td>
-            radio-button
+            <label><%= f.radio_button :mybest, 1, {:checked => true}  %>  </label> 
           </td>
           <td>
-            radio-button
+            <label><%= f.radio_button :mybest, 2 %>  </label> 
           </td>
           <td>
-            radio-button
+            <label><%= f.radio_button :mybest, 3 %>  </label> 
           </td>
         </tr>
       </tbody>
@@ -114,6 +114,5 @@
     
     <%= f.submit 'submit' %>
 <% end %>
-
   
 <%= link_to '一覧に戻る', charts_path ,class: "btn btn-primary"%>
