@@ -102,6 +102,8 @@ class ChartsController < ApplicationController
       
       @chart.title = charts_params["title"]
       @chart.description = charts_params["description"]
+      @chart.mybest = charts_params["mybest"]
+      @chart.summarycomment = charts_params["summarycomment"]
       @chart.save!
        #トランザクション処理を実装する
     
