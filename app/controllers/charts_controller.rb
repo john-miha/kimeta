@@ -91,18 +91,21 @@ class ChartsController < ApplicationController
   def update
     set_chart
 
-    if @chart.update(charts_params)
-      flash[:success] = '正常に投稿されました'
-      #レンダリングは全てを保存したあとに。
-      #redirect_to  @chart
-    else
-      flash.now[:danger] = '投稿されませんでした'
-    end
-
-    #トランザクション処理を実装する
     @chart.transaction do
 
-      #binding.pry
+    #タイトルが空だったときにエラーを吐きたい
+    #if @chart.update(charts_params)
+    #else
+    #  flash.now[:danger] = '正常に投稿されませんでした'
+    #end
+
+      
+      @chart.title = charts_params["title"]
+      @chart.description = charts_params["description"]
+      @chart.save!
+       #トランザクション処理を実装する
+    
+
       #配列でやってくるparamsを一時変数に格納
       evaluationscore = params[:evaluationscores]
       evaluationcomment = params[:evaluationcomments]
@@ -154,15 +157,17 @@ class ChartsController < ApplicationController
       
       #ここまでをfor文で回す
 
-
+    #flash[:success] = '正常に投稿されました'
     end #transaction
-    #transaction成功時の処理
-    #redirectは最後にしたほうがよい
+    flash[:success] = '正常に投稿されました'
     redirect_to  @chart
 
+    #binding.pry
+    #transaction成功時の処理
+    #redirectは最後にしたほうがよい
     # トランザクション失敗時の処理
     rescue => e
-      flash.now[:danger] = '投稿されませんでした'
+      flash.now[:danger] = '正常に投稿されませんでした'
       render :edit
     #rescueにはendが不要
   end
