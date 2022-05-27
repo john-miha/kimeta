@@ -5,3 +5,13 @@
 .radio {
     ;
 }
+
+.yellow-font {
+    /*font-size: 60px;
+    text-shadow: 5px 3px 0 orange;
+    */
+    font-weight: bold;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: orange;
+    -webkit-text-fill-color: white;
+}

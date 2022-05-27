@@ -118,7 +118,6 @@ class ChartsController < ApplicationController
       #                          3のとき0,4のとき1, 5のとき2
       #                          なので、itemについては3の剰余でいける。
       #viewpointについては、条件分岐を書く必要がある。
-
       for id in 0..8 do
 
         @chart.evaluations[id].score = evaluationscore[id]
@@ -126,18 +125,33 @@ class ChartsController < ApplicationController
         #transaction処理をするときはsaveやcreateに!をつけて、失敗したら例外を吐くようにする
         @chart.evaluations[id].save!
 
-        @chart.evaluations[id].items.first.name = itemname[id%3]
-        @chart.evaluations[id].items.first.save!
+        #ここの右辺には正しい名前が入っている
+        #@chart.evaluations[id].items.first.name = itemname[id%3]
+        #この時点で左辺には古い名前が入っている
+        #@chart.evaluations[id].items.first.save!
+        @item = @chart.evaluations[id].items.first
+        @item.name = itemname[id%3]
+        @item.save!
 
+
+        #binding.pry
+
+        #item.nameのセーブ
+        #@item.name = itemname[id%3]
+        #@item.save!
+        #viewpoint.nameのセーブ
+
+        @viewpoint = @chart.evaluations[id].viewpoints.first
         if id <3 then
-          @chart.evaluations[id].viewpoints.first.name = viewpointname[0]
+          @viewpoint.name = viewpointname[0]
         elsif id <6 then 
-          @chart.evaluations[id].viewpoints.first.name = viewpointname[1]
+          @viewpoint.name = viewpointname[1]
         else
-          @chart.evaluations[id].viewpoints.first.name = viewpointname[2]
+          @viewpoint.name = viewpointname[2]
         end
-        @chart.evaluations[id].viewpoints.first.save!
+        @viewpoint.save!
       end
+      
       #ここまでをfor文で回す
 
 

@@ -32,7 +32,8 @@
       <tbody>
         <tr>
           <td>
-            <%= f.label :viewpointname, "1" %>
+            <%= f.label :viewpointname, "こだわりポイント" %>
+            <br>
             <%= text_field_tag 'viewpointnames[]',"",  placeholder: "比較する観点を入力" %>
           </td>
           <% for id in 0..2 do %>
@@ -40,9 +41,9 @@
               <%= f.label :score, "Score" + id.to_s %>
               <%#= text_field_tag 'evaluationscores[]' %>
               <select name="evaluationscores[]">
-                <option value=1>1</option>
-                <option selected="selected" value=2>2</option>
-                <option value=3>3</option>
+                <option value=1>✖️</option>
+                <option selected="selected" value=2>△</option>
+                <option value=3>◎</option>
               </select>
               <br>
               <%= f.label :comment, "Comment" + id.to_s %>
@@ -52,7 +53,8 @@
         </tr>
         <tr>
           <td>
-            <%= f.label :viewpointname, "2" %>
+            <%= f.label :viewpointname, "観点2" %>
+            <br>
             <%= text_field_tag 'viewpointnames[]',"",  placeholder: "比較する観点を入力" %>
           </td>
           <% for id in 3..5 do %>
@@ -60,9 +62,9 @@
               <%= f.label :score, "Score" + id.to_s %>
               <%#= text_field_tag 'evaluationscores[]' %>
               <select name="evaluationscores[]">
-                <option value=1>1</option>
-                <option selected="selected" value=2>2</option>
-                <option value=3>3</option>
+                <option value=1>✖️</option>
+                <option selected="selected" value=2>△</option>
+                <option value=3>◎</option>
               </select>
               <br>
               <%= f.label :comment, "Comment" + id.to_s %>
@@ -72,7 +74,8 @@
         </tr>
         <tr>
           <td>
-            <%= f.label :viewpointname, "3" %>
+            <%= f.label :viewpointname, "観点3" %>
+            <br>
             <%= text_field_tag 'viewpointnames[]',"",  placeholder: "比較する観点を入力" %>
           </td>
           <% for id in 6..8 do %>
@@ -80,9 +83,9 @@
               <%= f.label :score, "Score" + id.to_s %>
               <%#= text_field_tag 'evaluationscores[]' %>
               <select name="evaluationscores[]">
-                <option value=1>1</option>
-                <option selected="selected" value=2>2</option>
-                <option value=3>3</option>
+                <option value=1>✖️</option>
+                <option selected="selected" value=2>△</option>
+                <option value=3>◎</option>
               </select>
               <br>
               <%= f.label :comment, "Comment" + id.to_s %>

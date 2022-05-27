@@ -50,49 +50,172 @@
 </thead>
 <tbody>
 <tr>
-  <td><%= tmp_viewpoint[0]%></td>
-  <td>
-    score:<%= @chart.evaluations[0].score %><br>
+  <td>こだわりポイント<br><h3><%= tmp_viewpoint[0]%></h3></td>
+  <td align="left">
+    <font size="7">
+    <% if @chart.evaluations[0].score==1 then%>
+    ✖️
+    <% elsif @chart.evaluations[0].score==2 then%>
+    <span class="yellow-font">△</span>
+    <%else %>
+    <font color="#ff0000">
+    ◎
+    </font>
+    <%end%>
+    </font>
+    <br>
     comment:<%= @chart.evaluations[0].comment %>
   </td>
   <td>
-    score:<%= @chart.evaluations[1].score %><br>
+    <font size="7"> 
+    <% if @chart.evaluations[1].score==1 then%>
+    ✖️
+    <% elsif @chart.evaluations[1].score==2 then%>
+    <span class="yellow-font">△</span>
+    <%else %>
+    <font color="#ff0000">
+    ◎
+    </font>
+    <%end%>
+    </font>
+    <br>
     comment:<%= @chart.evaluations[1].comment %>
-  </td>
+    </td>
   <td>
-    score:<%= @chart.evaluations[2].score %><br>
-    comment:<%= @chart.evaluations[2].comment %>
+  <font size="7" color="#ff0000">
+  <% if @chart.evaluations[2].score==1 then%>
+  ✖️
+  <% elsif @chart.evaluations[2].score==2 then%>
+  <font class="yellow-font">
+  △
+  </font>
+  <%else %>
+  <font color="#ff0000">
+  ◎
+  </font>
+  <%end%>
+  </font>
+  <br>
+  comment:<%= @chart.evaluations[2].comment %>
   </td>
 </tr>
 <tr>
-  <td><%= tmp_viewpoint[1]%></td>
+  <td>観点2<br><h3><%= tmp_viewpoint[1]%></h3></td>
   <td>
-    score:<%= @chart.evaluations[3].score %><br>
+  <font size="7" color="#ff0000">
+  <% if @chart.evaluations[3].score==1 then%>
+  ✖️
+  <% elsif @chart.evaluations[3].score==2 then%>
+  <span class="yellow-font">
+  △
+  </span>
+  <%else %>
+  <font color="#ff0000">
+  ◎
+  </font>
+  <%end%>
+  </font>
+  <br>
     comment:<%= @chart.evaluations[3].comment %>
   </td>
   <td>
-    score:<%= @chart.evaluations[4].score %><br>
+  <font size="7" color="#ff0000">
+  <% if @chart.evaluations[4].score==1 then%>
+  ✖️
+  <% elsif @chart.evaluations[4].score==2 then%>
+  <span class="yellow-font">
+  △
+  </span>
+  <%else %>
+  <font color="#ff0000">
+  ◎
+  </font>
+  <%end%>
+  </font>
+  <br>
     comment:<%= @chart.evaluations[4].comment %>
   </td>
   <td>
-    score:<%= @chart.evaluations[5].score %><br>
+  <font size="7" color="#ff0000">
+  <% if @chart.evaluations[5].score==1 then%>
+  ✖️
+  <% elsif @chart.evaluations[5].score==2 then%>
+  <span class="yellow-font">
+  △
+  </span>
+  <%else %>
+  <font color="#ff0000">
+  ◎
+  </font>
+  <%end%>
+  </font>
+  <br>
     comment:<%= @chart.evaluations[5].comment %>
   </td>
 </tr>
 <tr>
-  <td><%= tmp_viewpoint[2]%></td>
+  <td>観点3<br><h3><%= tmp_viewpoint[2]%></h3></td>
   <td>
-    score:<%= @chart.evaluations[6].score %><br>
+  <font size="7" color="#ff0000">
+  <% if @chart.evaluations[6].score==1 then%>
+  ✖️
+  <% elsif @chart.evaluations[6].score==2 then%>
+  <span class="yellow-font">
+  △
+  </span>
+  <%else %>
+  <font color="#ff0000">
+  ◎
+  </font>
+  <%end%>
+  </font>
+  <br>
     comment:<%= @chart.evaluations[6].comment %>
   </td>
   <td>
-    score:<%= @chart.evaluations[7].score %><br>
+  <font size="7" color="#ff0000">
+  <% if @chart.evaluations[7].score==1 then%>
+  ✖️
+  <% elsif @chart.evaluations[7].score==2 then%>
+  <span class="yellow-font">
+  △
+  </span>
+  <%else %>
+  <font color="#ff0000">
+  ◎
+  </font>
+  <%end%>
+  </font>
+  <br>
     comment:<%= @chart.evaluations[7].comment %>
   </td>
   <td>
-    score:<%= @chart.evaluations[8].score %><br>
+  <font size="7">
+  <% if @chart.evaluations[8].score==1 then%>
+  ✖️
+  <% elsif @chart.evaluations[8].score==2 then%>
+  <span class="yellow-font">
+  △
+  </span>
+  <%else %>
+  <font color="#ff0000">◎</font>
+  <%end%>
+  </font>
+  <br>
     comment:<%= @chart.evaluations[8].comment %>
   </td>
+</tr>
+<tr>
+<td>
+MyBest
+</td>
+<td>
+
+</td>
+<td>
+</td>
+<td>
+</td>
 </tr>
 
 <tbody>

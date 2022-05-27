@@ -16,9 +16,6 @@ urlを指定して、飛び先を教えてあげる。
     <%= f.label :description, "Description" %>
     <%= f.text_field :description %><br>
 
-    <%#これでも取得できた。%>
-    <%= f.label :evaluations, "Evaluations" %>
-    <%= f.text_field :evaluations %><br>
 
 
     <%# binding.pry %>
@@ -28,6 +25,7 @@ urlを指定して、飛び先を教えてあげる。
           <th>観点</th>
           <th>
             <%#既存のレコードで初期値を設定したい。submitの結果、同じidでレコードが保存されればそれでOK%>
+            <%#評価、コメントはOK%>
             <%= f.label :itemname, "1" %>
             <%= text_field_tag 'itemnames[]', @chart.evaluations[0].items[0].name, placeholder: "比較するアイテムを入力" %>
           </th>
@@ -44,16 +42,30 @@ urlを指定して、飛び先を教えてあげる。
       <tbody>
         <tr>
           <td>
-            <%= f.label :viewpointname, "1" %>
+            <%= f.label :viewpointname, "こだわりポイント" %>
+            <br>
             <%= text_field_tag 'viewpointnames[]', @chart.evaluations[0].viewpoints[0].name, placeholder: "入力してください"  %>
           </td>
           <% for id in 0..2 do %>
             <td>
               <%= f.label :score, "Score" + id.to_s %>
+              <%#データベースの値に応じて選択状態を作るためのif文%>
               <select name="evaluationscores[]">
-                <option value=1>1</option>
-                <option value=2>2</option>
-                <option value=3>3</option>
+                <% if @chart.evaluations[id].score==1 then%>
+                  <option value=1 selected>✖️</option>
+                <%else%>
+                  <option value=1>✖️</option>
+                <%end%>
+                <% if @chart.evaluations[id].score==2 then%>
+                  <option value=2 selected>△</option>
+                <%else%>
+                  <option value=2>△</option>
+                <%end%>
+                <% if @chart.evaluations[id].score==3 then%>
+                  <option value=3 selected>◎</option>
+                <%else%>
+                  <option value=3>◎</option>
+                <%end%>
               </select>
               <br>
               <%= f.label :comment, "Comment" + id.to_s %>
@@ -63,16 +75,29 @@ urlを指定して、飛び先を教えてあげる。
         </tr>
         <tr>
           <td>
-            <%= f.label :viewpointname, "2" %>
+            <%= f.label :viewpointname, "観点2" %>
+            <br>
             <%= text_field_tag 'viewpointnames[]', @chart.evaluations[3].viewpoints[0].name, placeholder: "入力してください" %>
           </td>
           <% for id in 3..5 do %>
             <td>
               <%= f.label :score, "Score" + id.to_s %>
               <select name="evaluationscores[]">
-                <option value=1>1</option>
-                <option value=2>2</option>
-                <option value=3>3</option>
+                <% if @chart.evaluations[id].score==1 then%>
+                <option value=1 selected>✖️</option>
+                <%else%>
+                  <option value=1>✖️</option>
+                <%end%>
+                <% if @chart.evaluations[id].score==2 then%>
+                  <option value=2 selected>△</option>
+                <%else%>
+                  <option value=2>△</option>
+                <%end%>
+                <% if @chart.evaluations[id].score==3 then%>
+                  <option value=3 selected>◎</option>
+                <%else%>
+                  <option value=3>◎</option>
+                <%end%>
               </select>
               <br>
               <%= f.label :comment, "Comment" + id.to_s %>
@@ -82,17 +107,30 @@ urlを指定して、飛び先を教えてあげる。
         </tr>
         <tr>
           <td>
-            <%= f.label :viewpointname, "3" %>
+            <%= f.label :viewpointname, "観点3" %>
+            <br>
             <%= text_field_tag 'viewpointnames[]', @chart.evaluations[6].viewpoints[0].name, placeholder: "入力してください" %>
           </td>
           <% for id in 6..8 do %>
             <td>
               <%= f.label :score, "Score" + id.to_s %>
               <select name="evaluationscores[]">
-                <option value=1>1</option>
-                <option value=2>2</option>
-                <option value=3>3</option>
-              </select>
+                <% if @chart.evaluations[id].score==1 then%>
+                <option value=1 selected>✖️</option>
+                <%else%>
+                  <option value=1>✖️</option>
+                <%end%>
+                <% if @chart.evaluations[id].score==2 then%>
+                  <option value=2 selected>△</option>
+                <%else%>
+                  <option value=2>△</option>
+                <%end%>
+                <% if @chart.evaluations[id].score==3 then%>
+                  <option value=3 selected>◎</option>
+                <%else%>
+                  <option value=3>◎</option>
+                <%end%>
+            </select>
               <br>
               <%= f.label :comment, "Comment" + id.to_s %>
               <%= text_field_tag 'evaluationcomments[]', @chart.evaluations[id].comment, placeholder: "未入力です" %><br>
@@ -105,13 +143,13 @@ urlを指定して、飛び先を教えてあげる。
         </td>
         <td>
         
-          <label class="radio"><%= f.radio_button :mybest, 1  %>  </label> 
+          <label class="radio"><%= f.radio_button :mybest, 0  %>  </label> 
+        </td>
+        <td>
+          <label><%= f.radio_button :mybest, 1 %>  </label> 
         </td>
         <td>
           <label><%= f.radio_button :mybest, 2 %>  </label> 
-        </td>
-        <td>
-          <label><%= f.radio_button :mybest, 3 %>  </label> 
         </td>
       </tr>
       </tbody>
