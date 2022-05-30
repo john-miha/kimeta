@@ -42,7 +42,9 @@ urlを指定して、飛び先を教えてあげる。
       <tbody>
         <tr>
           <td>
-            <%= f.label :viewpointname, "こだわりポイント" %>
+          <font color="#ff0000">
+            <%= f.label :viewpointname, "重要" %>
+          </font>
             <br>
             <%= text_field_tag 'viewpointnames[]', @chart.evaluations[0].viewpoints[0].name, placeholder: "入力してください"  %>
           </td>
@@ -163,4 +165,4 @@ urlを指定して、飛び先を教えてあげる。
     <%= f.submit 'submit' %>
 <% end %>
 
-<%= link_to 'トップに戻る', charts_path %>
+<%= link_to '表に戻る', chart_path(@chart), class: "btn btn-primary" %>

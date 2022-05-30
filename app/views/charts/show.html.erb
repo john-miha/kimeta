@@ -48,7 +48,7 @@
 </thead>
 <tbody>
 <tr>
-  <td><font color="#ff0000">重要！</font><h3><%= tmp_viewpoint[0]%></h3></td>
+  <td><font color="#ff0000">重要</font><h3><%= tmp_viewpoint[0]%></h3></td>
   <td align="left">
     <font size="7">
     <% if @chart.evaluations[0].score==1 then%>
@@ -240,6 +240,5 @@ MyBest
 <h1 class="d-inline underline">総評</h1>
 <h3><%= @chart.summarycomment %></h3>
 
-<%= link_to 'トップに戻る', charts_path %>
-<%= link_to '表を編集', edit_chart_path(@chart) %>
-<%= link_to '表を削除', @charts, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+<%= link_to '表を編集', edit_chart_path(@chart), class: "btn btn-primary" %>
+<%= link_to '表を削除', @charts, method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除してよろしいですか？' } %>
