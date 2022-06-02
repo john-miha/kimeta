@@ -1,7 +1,7 @@
 <div class="bg-warning p-3 p-sm-3 my-4 rounded">
   <h1><%= @chart.title %></h1>
 </div>
-  <h3 class="d-inline underline">説明</h3>
+  <h3 class="d-inline underline">DESCRIPTION</h3>
 <p><%= @chart.description %></p>
 
 
@@ -27,8 +27,6 @@
     <% end %>
 
 <% end %>
-<%# ユニークなアイテム tmp_name %>
-<%# ユニークな観点 tmp_viewpoint %>
 
 <%# tmpclass = @chart.evaluations.find_by(comment: "c1") %>
 <%#= tmpclass.score %>
@@ -40,7 +38,8 @@
 <table class="table">
 <thead>
   <tr>
-    <th>観点</th>
+    <th></th>
+    <th></th>
     <th><%= tmp_name[0]%></th>
     <th><%= tmp_name[1]%></th>
     <th><%= tmp_name[2]%></th>
@@ -48,7 +47,8 @@
 </thead>
 <tbody>
 <tr>
-  <td><font color="#ff0000">重要</font><h3><%= tmp_viewpoint[0]%></h3></td>
+  <td rowspan="3">VIEWPOINT</td>
+  <td><font color="#ff0000">CRITICAL</font><h3><%= tmp_viewpoint[0]%></h3></td>
   <td align="left">
     <font size="7">
     <% if @chart.evaluations[0].score==1 then%>
@@ -98,7 +98,7 @@
   </td>
 </tr>
 <tr>
-  <td>観点2<br><h3><%= tmp_viewpoint[1]%></h3></td>
+  <td><h3><%= tmp_viewpoint[1]%></h3></td>
   <td>
   <font size="7" color="#ff0000">
   <% if @chart.evaluations[3].score==1 then%>
@@ -152,7 +152,7 @@
   </td>
 </tr>
 <tr>
-  <td>観点3<br><h3><%= tmp_viewpoint[2]%></h3></td>
+  <td><h3><%= tmp_viewpoint[2]%></h3></td>
   <td>
   <font size="7" color="#ff0000">
   <% if @chart.evaluations[6].score==1 then%>
@@ -205,7 +205,9 @@
 </tr>
 <tr>
 <td>
-MyBest
+MyBEST
+</td>
+<td>
 </td>
 <td>
 <% if @chart.mybest==0 then%>
@@ -237,7 +239,7 @@ MyBest
     <p>評価項目がありません</p>
 <% end %>
 
-<h1 class="d-inline underline">総評</h1>
+<h1 class="d-inline underline">SUMMARY</h1>
 <h3><%= @chart.summarycomment %></h3>
 
 <%= link_to '表を編集', edit_chart_path(@chart), class: "btn btn-primary" %>
