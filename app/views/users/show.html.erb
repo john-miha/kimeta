@@ -11,9 +11,34 @@
   </aside>
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="#" class="nav-link">作成済み</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">非公開</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">お気に入り</a></li>
+      <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">作成済み  <span class="badge bg-secondary"><%= @count_charts %></span></a></li>
+      <li class="nav-item"><a href="#" class="nav-link">作成中</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">[TBD]お気に入り</a></li>
     </ul>
-  </div>
+  <% @charts.each do |chart| %>
+    <% tmp_name = [] %>
+
+     <%= link_to chart.title, chart %>
+     <ul>
+      <li>説明：<%= chart.description %></li>
+
+      <%#ここに表を入れ込んでもOK%>
+      <%#項目名を取得 %>
+      <% chart.evaluations.each do |evaluation| %>
+        <%# もしtmp_nameに evaluation.items.first.name が含まれていなければ保存%>
+        <% if !tmp_name.include?(evaluation.items.first.name) then%>
+            <% tmp_name.push(evaluation.items.first.name) %>
+        <%# 含まれて入ればスキップ%>
+        <% end %>
+      <% end %>
+      <%#ここまで%>
+
+      <li>サマリー： <%= chart.summarycomment %></li>
+      <%#MyBestの値からアイテム名を引っ張ってくる%>
+      <%#ここまで%>
+      <li>MyBest： <%= tmp_name[chart.mybest] %></li>
+    </ul>
+  <% end %>       
 </div>
+</div>
+

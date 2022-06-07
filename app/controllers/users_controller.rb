@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @pagy, @charts = pagy(@user.charts.order(id: :desc))
+    counts(@user)
   end
 
   def new
@@ -28,6 +30,6 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
-  
+
 end
 

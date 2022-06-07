@@ -1,5 +1,19 @@
 <header class="mb-4">
   <nav class="navbar navbar-expand-sm navbar-light bg-warning">
+  <% if logged_in? %>
+  <div class="btn-group">
+    <ul class="navbar-nav">
+      <li class="ms-3"><%= link_to 'Users', users_path, class: 'nav-link' %></li>
+    </ul>
+    <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><%= current_user.name %></button>
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li class="dropdown-item"><%= link_to 'My profile', user_path(current_user), class: 'nav-link' %></li>
+      <li class="dropdown-divider"></li>
+      <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete, class: 'nav-link' %></li>
+      </ul>
+  </div>
+  <% else %>
+  
     <div class="container-fluid ps-5 pe-5">
       <a class="navbar-brand" href="/">Kimeta</a>
       <!-- 横幅が狭い時に出るハンバーガーボタン -->
@@ -18,5 +32,7 @@
         </ul>
       </div>
     </div>
+    <%end%>
   </nav>
 </header>
+

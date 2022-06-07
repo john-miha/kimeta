@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_02_100430) do
+ActiveRecord::Schema.define(version: 2022_06_06_103633) do
 
   create_table "charts", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2022_06_02_100430) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "summarycomment"
     t.integer "mybest"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_charts_on_user_id"
   end
 
   create_table "evaluations", charset: "utf8mb4", force: :cascade do |t|
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(version: 2022_06_02_100430) do
     t.index ["evaluation_id"], name: "index_viewpoints_on_evaluation_id"
   end
 
+  add_foreign_key "charts", "users"
   add_foreign_key "evaluations", "charts"
   add_foreign_key "items", "evaluations"
   add_foreign_key "viewpoints", "evaluations"

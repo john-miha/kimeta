@@ -1,3 +1,7 @@
+<% if logged_in? %>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+<% else %>
+
 <div class="bg-warning p-3 p-sm-5 my-4 rounded">
   <div class="text-center text-white">
     <h1>kimeta</h1>
@@ -55,3 +59,4 @@
   </div>
 </div>
 
+<%end%>
